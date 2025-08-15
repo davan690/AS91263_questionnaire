@@ -1,0 +1,79 @@
+---
+title: "Notes on Writing a Purpose Statement (AS91263)"
+author: "Student Name"
+date: "`r Sys.Date()`"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Notes on Writing a Purpose Statement (AS91263)
+
+## 1. What is a Purpose Statement?
+
+It's the main **GOAL** of your investigation. For your assessment, it goes in the **Introduction** of your report.
+
+A good purpose statement guides ALL your decisions and clearly states:
+* **WHAT** you want to find out (your research objectives).
+* **WHO** the research is for (your audience or client, e.g., the Student Council).
+* **WHOM** you are finding it out about (your target population).
+* **HOW** your audience could use the data you gather.
+
+---
+
+## 2. The Recipe (Key Ingredients)
+
+Your purpose needs to link everything together. Make sure you clearly identify:
+
+* **The Audience:** Who is it FOR? How will they USE the data?
+* **The Purpose/Goal:** WHAT do you want to find out? (Is it a **comparison** or a **relationship**?).
+* **The Population:** WHO are you asking? Be specific (e.g., time, place, age).
+* **The Variables:** What specific data or information will you collect?
+
+---
+
+## 3. The Template (How to Write It)
+
+Start with your audience to guide your thinking.
+
+#### For a COMPARISON:
+```
+On behalf of [The Audience], I want to investigate the difference in the [Variable to measure] between [Group 1] and [Group 2] for the population of [Your Population].
+```
+
+#### For a RELATIONSHIP:
+```
+On behalf of [The Audience], I want to investigate if there is a relationship between [Variable 1] and [Variable 2] for the population of [Your Population].
+```
+
+---
+
+## 4. Examples
+
+* **Canteen Example (from workbook image):**
+    +   **Audience:** The Canteen Management Committee.
+    +   **Purpose:** To investigate how much students would be prepared to pay for items in the canteen, to help the committee decide if it should change its pricing structure.
+* **Financial Literacy Example (from PDF themes):**
+    +   **Audience:** The Year 12 Dean.
+    +   **Purpose:** To investigate if there is a relationship between having a part-time job and savings habits for the population of Year 12 students at our school.
+
+---
+
+## 5. Your First Checklist (Checkpoint One)
+
+Before writing any questions, you must have this information ready for your report:
+
+- [ ] **CONTEXT & GOAL:** Have you defined the context of your investigation and your research objectives?
+- [ ] **AUDIENCE & USE:** Have you explained who your audience is and how the data can be used by them?
+- [ ] **TARGET POPULATION:** Have you clearly defined your target population?
+- [ ] **DATA:** Have you explained what data your questionnaire will gather to meet the purpose?
+
+---
+
+## 6. A Note on Grades
+
+* **Merit:** Requires **justification**. You need to explain *why* you made your design choices, such as why the data will be useful for your chosen audience.
+* **Excellence:** Requires **statistical insight**. This involves linking statistical and contextual knowledge to the purpose, for example, by explaining how your questions build on each other to better achieve your goal.
+

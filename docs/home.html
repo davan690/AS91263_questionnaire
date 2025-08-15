@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Unit Plan: AS 91263 - Design a Questionnaire</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Chosen Palette: Calm Harmony (Light neutral background, dark text, muted teal/blue accent) -->
+    <!-- Application Structure Plan: A tabbed, single-page application with sections for Overview, Key Concepts, and Assessment. This structure breaks down the dense unit plan into user-selectable, manageable chunks, prioritizing usability over the original linear format. Key interactions include an accordion for concepts and tabs for assessment criteria to make information easily accessible. -->
+    <!-- Visualization & Content Choices: Report Info: Key Concepts -> Goal: Organize/Inform -> Viz: Interactive Accordion -> Interaction: Click to expand/collapse -> Justification: Manages large amount of text, prevents cognitive overload -> Library/Method: HTML/CSS/JS. Report Info: Assessment Criteria -> Goal: Compare -> Viz: Tabbed Interface -> Interaction: Click to switch between A/M/E -> Justification: Allows direct comparison of grade requirements -> Library/Method: HTML/CSS/JS. Report Info: PPDAC Cycle -> Goal: Inform/Organize -> Viz: HTML/CSS Diagram with text and arrows -> Interaction: Static visual -> Justification: Provides clear visual context for the unit's place in the statistical process -> Library/Method: HTML/CSS. -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc; /* slate-50 */
+        }
+        .nav-button {
+            transition: all 0.3s ease;
+            border-bottom: 2px solid transparent;
+        }
+        .nav-button.active {
+            color: #0d9488; /* teal-600 */
+            border-bottom-color: #0d9488; /* teal-600 */
+        }
+        .section {
+            display: none;
+        }
+        .section.active {
+            display: block;
+        }
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease-out;
+        }
+        .tab-button.active {
+            background-color: #0d9488; /* teal-600 */
+            color: white;
+        }
+        .tab-content {
+            display: none;
+        }
+        .tab-content.active {
+            display: block;
+        }
+        .ppdac-step {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            text-align: center;
+            padding: 0.75rem 1rem;
+            background-color: #ecfeff; /* emerald-50 */
+            border: 1px solid #99f6e4; /* emerald-200 */
+            border-radius: 0.5rem;
+            font-weight: 600;
+            color: #0f766e; /* emerald-800 */
+            min-width: 80px; /* Ensure minimum width for smaller screens */
+        }
+        .ppdac-arrow {
+            font-size: 1.5rem;
+            color: #0d9488; /* teal-600 */
+            margin: 0 0.5rem;
+            line-height: 1;
+        }
+        @media (max-width: 640px) {
+            .ppdac-flow {
+                flex-direction: column;
+                align-items: center;
+            }
+            .ppdac-arrow {
+                transform: rotate(90deg);
+                margin: 0.5rem 0;
+            }
+        }
+    </style>
+</head>
+<body class="text-slate-800">
+
+    <div class="container mx-auto max-w-6xl p-4 sm:p-6 md:p-8">
+        <header class="text-center mb-8">
+            <h1 class="text-3xl md:text-4xl font-bold text-slate-900">Interactive Unit Plan</h1>
+            <p class="text-lg text-teal-700 font-medium">NCEA Level 2 - AS 91263: Design a questionnaire</p>
+        </header>
+
+        <nav class="flex justify-center border-b border-slate-200 mb-8">
+            <button data-target="overview" class="nav-button active text-sm sm:text-base font-semibold py-3 px-3 sm:px-6">Overview</button>
+            <button data-target="concepts" class="nav-button text-sm sm:text-base font-semibold py-3 px-3 sm:px-6">Key Concepts</button>
+            <button data-target="assessment" class="nav-button text-sm sm:text-base font-semibold py-3 px-3 sm:px-6">Assessment</button>
+        </nav>
+
+        <main>
+            <!-- Overview Section -->
+            <section id="overview" class="section active animate-fade-in">
+                <div class="bg-white p-6 rounded-lg shadow-sm">
+                    <h2 class="text-2xl font-bold mb-4 text-teal-700">Unit Overview</h2>
+                    <p class="mb-6 text-slate-600">
+                        This unit guides students through the process of designing a robust and effective questionnaire for a statistical investigation. The primary focus is on the principles of design, ensuring the final questionnaire is fit for its intended purpose. This interactive guide breaks down the unit plan into its core components to support teaching and learning.
+                    </p>
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-6 text-center">
+                        <div class="bg-slate-100 p-4 rounded-lg">
+                            <p class="text-sm font-medium text-slate-500">Achievement Standard</p>
+                            <p class="text-xl font-bold text-slate-900">AS 91263</p>
+                        </div>
+                        <div class="bg-slate-100 p-4 rounded-lg">
+                            <p class="text-sm font-medium text-slate-500">Credits</p>
+                            <p class="text-xl font-bold text-slate-900">3</p>
+                        </div>
+                        <div class="bg-slate-100 p-4 rounded-lg">
+                            <p class="text-sm font-medium text-slate-500">Duration</p>
+                            <p class="text-xl font-bold text-slate-900">~ 3 Weeks</p>
+                        </div>
+                    </div>
+
+                    <h3 class="text-xl font-bold mb-3 text-slate-800">Learning Objectives</h3>
+                    <p class="mb-4 text-slate-600">Upon completion of this unit, students will be able to:</p>
+                    <ul class="list-disc list-inside space-y-2 text-slate-700">
+                        <li>Understand the purpose and role of questionnaires within the PPDAC cycle.</li>
+                        <li>Identify and differentiate between various types of questionnaire questions.</li>
+                        <li>Formulate clear, concise, unbiased, and relevant questions.</li>
+                        <li>Recognise and avoid common pitfalls in question wording.</li>
+                        <li>Structure a questionnaire logically, including an introduction, main body, and conclusion.</li>
+                        <li>Consider and address ethical implications in questionnaire design.</li>
+                        <li>Design a questionnaire that is "fit for purpose" for a given statistical investigation.</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Key Concepts Section -->
+            <section id="concepts" class="section animate-fade-in">
+                 <div class="bg-white p-6 rounded-lg shadow-sm">
+                    <h2 class="text-2xl font-bold mb-4 text-teal-700">Key Concepts</h2>
+                    <p class="mb-6 text-slate-600">
+                        This section outlines the core knowledge required for designing a high-quality questionnaire. These concepts form the theoretical foundation of the unit, starting with the overarching statistical investigation process. Click on each concept to expand and view the detailed information.
+                    </p>
+
+                    <h3 class="text-xl font-bold mb-3 text-slate-800">The PPDAC Cycle</h3>
+                    <p class="mb-4 text-slate-600">
+                        Questionnaire design is a crucial part of the 'Data' stage within the broader Statistical Investigation Process, known as the PPDAC cycle. This cycle helps structure any statistical inquiry.
+                    </p>
+                    <div class="flex flex-wrap justify-center items-center mb-8">
+                        <div class="ppdac-flow flex flex-wrap justify-center items-center">
+                            <div class="ppdac-step">Problem</div>
+                            <span class="ppdac-arrow">&#x2192;</span>
+                            <div class="ppdac-step">Plan</div>
+                            <span class="ppdac-arrow">&#x2192;</span>
+                            <div class="ppdac-step">Data</div>
+                            <span class="ppdac-arrow">&#x2192;</span>
+                            <div class="ppdac-step">Analysis</div>
+                            <span class="ppdac-arrow">&#x2192;</span>
+                            <div class="ppdac-step">Conclusion</div>
+                        </div>
+                        <p class="text-sm text-slate-500 mt-4 w-full text-center">
+                            (The cycle typically flows back from Conclusion to Problem for new investigations)
+                        </p>
+                    </div>
+
+                    <div id="accordion-container" class="space-y-2">
+                        <!-- Accordion items will be injected here by JS -->
+                    </div>
+                </div>
+            </section>
+
+            <!-- Assessment Section -->
+            <section id="assessment" class="section animate-fade-in">
+                <div class="bg-white p-6 rounded-lg shadow-sm">
+                    <h2 class="text-2xl font-bold mb-4 text-teal-700">Assessment Guide</h2>
+                    <p class="mb-6 text-slate-600">
+                        This section details the requirements for the summative assessment. Use the tabs below to understand the specific criteria for achieving at each grade level. The final submission must be a complete questionnaire that is well-designed and fit for its stated purpose.
+                    </p>
+                    
+                    <h3 class="text-xl font-bold mb-3 text-slate-800">Achievement Criteria</h3>
+                    <div class="mb-6">
+                        <div class="flex border-b border-slate-200">
+                            <button data-tab="achieved" class="tab-button active flex-1 sm:flex-none text-sm sm:text-base font-medium py-2 px-4 rounded-t-lg">Achieved</button>
+                            <button data-tab="merit" class="tab-button flex-1 sm:flex-none text-sm sm:text-base font-medium py-2 px-4 rounded-t-lg">Merit</button>
+                            <button data-tab="excellence" class="tab-button flex-1 sm:flex-none text-sm sm:text-base font-medium py-2 px-4 rounded-t-lg">Excellence</button>
+                        </div>
+                        <div class="p-4 bg-slate-50 rounded-b-lg border-x border-b border-slate-200">
+                            <div id="achieved" class="tab-content active">
+                                <p class="font-semibold text-slate-700">Design a questionnaire for a statistical investigation.</p>
+                                <ul class="list-disc list-inside mt-2 text-sm text-slate-600">
+                                    <li>Includes a clear purpose.</li>
+                                    <li>Uses appropriate question types.</li>
+                                    <li>Has a logical flow.</li>
+                                </ul>
+                            </div>
+                            <div id="merit" class="tab-content">
+                                <p class="font-semibold text-slate-700">Design a <span class="text-teal-700">well-designed</span> questionnaire for a statistical investigation.</p>
+                                <ul class="list-disc list-inside mt-2 text-sm text-slate-600">
+                                    <li>All criteria for Achieved are met.</li>
+                                    <li>Questions are clear and unbiased.</li>
+                                    <li>Uses appropriate scales.</li>
+                                    <li>Shows consideration for the target audience.</li>
+                                </ul>
+                            </div>
+                            <div id="excellence" class="tab-content">
+                                <p class="font-semibold text-slate-700">Design a well-designed questionnaire that is <span class="text-teal-700">fit for purpose</span>.</p>
+                                <ul class="list-disc list-inside mt-2 text-sm text-slate-600">
+                                    <li>All criteria for Merit are met.</li>
+                                    <li>Effectively achieves its stated purpose.</li>
+                                    <li>Proactively addresses potential issues (e.g., non-response, sensitive questions).</li>
+                                    <li>Demonstrates a sophisticated understanding of design principles.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <h3 class="text-xl font-bold mb-3 text-slate-800">Summative Assessment Requirements</h3>
+                     <p class="mb-4 text-slate-600">The submitted questionnaire must include:</p>
+                    <ul class="list-disc list-inside space-y-2 text-slate-700">
+                        <li>A clear statement of the <a href="#" data-concept-id="purpose-objectives" class="text-teal-600 hover:underline"><strong>purpose</strong></a> of the statistical investigation.</li>
+                        <li>Identification of the <a href="#" data-concept-id="purpose-objectives" class="text-teal-600 hover:underline"><strong>target population</strong></a>.</li>
+                        <li>A concise and informative <a href="#" data-concept-id="structure-flow" class="text-teal-600 hover:underline"><strong>introduction</strong></a> for respondents.</li>
+                        <li>A <a href="#" data-concept-id="question-types" class="text-teal-600 hover:underline"><strong>variety of appropriate question types</strong></a> relevant to the investigation.</li>
+                        <li><a href="#" data-concept-id="writing-questions" class="text-teal-600 hover:underline"><strong>Clear, unbiased, and unambiguous wording</strong></a> for all questions.</li>
+                        <li>A <a href="#" data-concept-id="structure-flow" class="text-teal-600 hover:underline"><strong>logical flow and structure</strong></a> that guides the respondent.</li>
+                        <li>Evidence of <a href="#" data-concept-id="ethical-considerations" class="text-teal-600 hover:underline"><strong>consideration of ethical issues</strong></a> (e.g., a statement about anonymity/confidentiality).</li>
+                        <li>A brief <a href="#" data-concept-id="structure-flow" class="text-teal-600 hover:underline"><strong>conclusion/thank you</strong></a> message.</li>
+                    </ul>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const navButtons = document.querySelectorAll('.nav-button');
+            const sections = document.querySelectorAll('.section');
+            const tabButtons = document.querySelectorAll('.tab-button');
+            const tabContents = document.querySelectorAll('.tab-content');
+            const accordionContainer = document.getElementById('accordion-container');
+
+            const accordionData = [
+                {
+                    id: 'purpose-objectives',
+                    title: 'Purpose Statement & Research Objectives',
+                    content: 'Every questionnaire must start with a clear <strong>purpose statement</strong>, explaining why the data is being collected. This purpose should directly align with specific <strong>research objectives</strong> or statistical questions you aim to answer. Defining these upfront ensures the questionnaire is focused and relevant. Identifying the <strong>target population</strong> is also crucial for designing relevant questions and choosing an appropriate delivery method.'
+                },
+                {
+                    id: 'question-types',
+                    title: 'Question Types',
+                    content: `
+                        <ul class="list-disc list-inside space-y-2">
+                            <li><strong>Open-ended:</strong> Allows free-form answers (e.g., "What are your thoughts on..."). Good for qualitative data.</li>
+                            <li><strong>Closed-ended:</strong> Provides pre-defined answer choices.
+                                <ul class="list-['-_'] list-inside ml-4 mt-1 space-y-1">
+                                    <li><strong>Dichotomous:</strong> Yes/No, True/False.</li>
+                                    <li><strong>Multiple Choice:</strong> Select one or more from a list.</li>
+                                    <li><strong>Rating Scales (Likert):</strong> e.g., Strongly Agree to Strongly Disagree.</li>
+                                    <li><strong>Rank Order:</strong> Ask respondents to rank items in order of preference.</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    `
+                },
+                {
+                    id: 'writing-questions',
+                    title: 'Writing Effective Questions',
+                    content: `
+                        This involves applying principles of good question wording to craft each individual question.
+                        <ul class="list-disc list-inside space-y-2 mt-2">
+                            <li><strong>Clarity & Conciseness:</strong> Easy to understand, to the point.</li>
+                            <li><strong>Avoiding Ambiguity:</strong> No room for misinterpretation (e.g., avoid words like 'often' or 'sometimes').</li>
+                            <li><strong>Avoiding Leading/Biased Questions:</strong> Does not suggest a preferred answer (e.g., "Don't you agree that...?").</li>
+                            <li><strong>Avoiding Double-Barrelled Questions:</strong> Asks only one thing at a time (e.g., "Was the service fast and friendly?").</li>
+                            <li><strong>Appropriate Language:</strong> Suited to the literacy and understanding of the target audience.</li>
+                        </ul>
+                    `
+                },
+                {
+                    id: 'delivery-method',
+                    title: 'Delivery Method',
+                    content: 'The choice of how the questionnaire is administered significantly impacts its design and potential biases. Common methods include: <ul><li><strong>Self-Administered:</strong> Online (e.g., Google Forms), mail, email. Offers anonymity but less control.</li><li><strong>Interviewer-Administered:</strong> Face-to-face, telephone. Allows clarification but may introduce interviewer bias.</li></ul>'
+                },
+                {
+                    id: 'structure-flow',
+                    title: 'Questionnaire Structure & Flow',
+                    content: `
+                        <ul class="list-disc list-inside space-y-2">
+                            <li><strong>Introduction:</strong> State purpose, confidentiality, instructions, and estimated time.</li>
+                            <li><strong>Screening Questions:</strong> (Optional) To ensure respondent fits the target population.</li>
+                            <li><strong>Main Body:</strong> Logically grouped questions, starting with easy questions and moving to more complex ones.</li>
+                            <li><strong>Demographic Questions:</strong> (e.g., age, gender) should be placed at the end.</li>
+                            <li><strong>Conclusion:</strong> Thank the respondent for their time.</li>
+                        </ul>
+                    `
+                },
+                {
+                    id: 'data-analysis',
+                    title: 'Data Analysis (Output) Considerations',
+                    content: 'When designing questions, consider how the data will be collected and analysed. For example, closed-ended questions are easier to quantify. Think about the type of statistical analysis you intend to perform (e.g., calculating percentages, comparing groups) and ensure your questions will yield the necessary data for those analyses. The questionnaire should be "fit for purpose" for the intended output.'
+                },
+                {
+                    id: 'ethical-considerations',
+                    title: 'Ethical Considerations',
+                    content: `
+                        <ul class="list-disc list-inside space-y-2">
+                            <li><strong>Anonymity vs. Confidentiality:</strong> Anonymity means you cannot identify the respondent at all. Confidentiality means you can, but you promise not to share their identity. Be clear which you are offering.</li>
+                            <li><strong>Informed Consent:</strong> Respondents must know what they are agreeing to.</li>
+                            <li><strong>Sensitive Questions:</strong> Handle with care. Make them optional, place them at the end, and explain why they are being asked.</li>
+                            <li><strong>Right to Withdraw:</strong> Respondents can stop at any time.</li>
+                        </ul>
+                    `
+                },
+                 {
+                    id: 'piloting-testing',
+                    title: 'Piloting/Testing',
+                    content: 'Piloting is testing your questionnaire on a small sample of your target audience before the main survey. It is crucial for identifying confusing questions, estimating the time it takes, and checking for any other issues. Feedback from piloting should be used to refine the questionnaire.'
+                }
+            ];
+
+            accordionData.forEach((item, index) => {
+                const accordionItem = document.createElement('div');
+                accordionItem.classList.add('border', 'border-slate-200', 'rounded-lg');
+                accordionItem.innerHTML = `
+                    <button id="${item.id}" class="accordion-header w-full flex justify-between items-center text-left p-4 bg-slate-50 hover:bg-slate-100 focus:outline-none">
+                        <span class="font-semibold text-slate-700">${item.title}</span>
+                        <span class="accordion-icon transform transition-transform duration-300">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                        </span>
+                    </button>
+                    <div class="accordion-content">
+                        <div class="p-4 text-slate-600 text-sm">
+                            ${item.content}
+                        </div>
+                    </div>
+                `;
+                accordionContainer.appendChild(accordionItem);
+            });
+
+            const accordionHeaders = document.querySelectorAll('.accordion-header');
+            accordionHeaders.forEach(header => {
+                header.addEventListener('click', () => {
+                    const content = header.nextElementSibling;
+                    const icon = header.querySelector('.accordion-icon');
+                    
+                    if (content.style.maxHeight) {
+                        content.style.maxHeight = null;
+                        icon.classList.remove('rotate-180');
+                    } else {
+                        // Optional: close other accordions
+                        // accordionHeaders.forEach(h => {
+                        //     h.nextElementSibling.style.maxHeight = null;
+                        //     h.querySelector('.accordion-icon').classList.remove('rotate-180');
+                        // });
+                        content.style.maxHeight = content.scrollHeight + "px";
+                        icon.classList.add('rotate-180');
+                    }
+                });
+            });
+
+            navButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    const target = button.dataset.target;
+
+                    navButtons.forEach(btn => btn.classList.remove('active'));
+                    button.classList.add('active');
+
+                    sections.forEach(section => {
+                        if (section.id === target) {
+                            section.classList.add('active');
+                        } else {
+                            section.classList.remove('active');
+                        }
+                    });
+                });
+            });
+
+            tabButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    const target = button.dataset.tab;
+
+                    tabButtons.forEach(btn => btn.classList.remove('active'));
+                    button.classList.add('active');
+
+                    tabContents.forEach(content => {
+                        if (content.id === target) {
+                            content.classList.add('active');
+                        } else {
+                            content.classList.remove('active');
+                        }
+                    });
+                });
+            });
+
+            // Handle internal links to accordion items
+            document.querySelectorAll('a[data-concept-id]').forEach(link => {
+                link.addEventListener('click', function(event) {
+                    event.preventDefault();
+                    const conceptId = this.dataset.conceptId;
+                    
+                    // Switch to Key Concepts tab
+                    document.querySelector('.nav-button[data-target="concepts"]').click();
+
+                    // Find and open the corresponding accordion item
+                    const targetAccordionHeader = document.getElementById(conceptId);
+                    if (targetAccordionHeader) {
+                        const content = targetAccordionHeader.nextElementSibling;
+                        const icon = targetAccordionHeader.querySelector('.accordion-icon');
+
+                        // Ensure it's open
+                        if (!content.style.maxHeight) {
+                            content.style.maxHeight = content.scrollHeight + "px";
+                            icon.classList.add('rotate-180');
+                        }
+
+                        // Scroll to the accordion item
+                        setTimeout(() => { // Small delay to allow max-height transition
+                            targetAccordionHeader.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                        }, 400); 
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
