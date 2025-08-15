@@ -5,12 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Interactive Unit Plan: AS 91263 - Design a Questionnaire</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <!-- Chosen Palette: Calm Harmony (Light neutral background, dark text, muted teal/blue accent) -->
-    <!-- Application Structure Plan: A tabbed, single-page application with sections for Overview, Key Concepts, and Assessment. This structure breaks down the dense unit plan into user-selectable, manageable chunks, prioritizing usability over the original linear format. Key interactions include an accordion for concepts and tabs for assessment criteria to make information easily accessible. -->
-    <!-- Visualization & Content Choices: Report Info: Key Concepts -> Goal: Organize/Inform -> Viz: Interactive Accordion -> Interaction: Click to expand/collapse -> Justification: Manages large amount of text, prevents cognitive overload -> Library/Method: HTML/CSS/JS. Report Info: Assessment Criteria -> Goal: Compare -> Viz: Tabbed Interface -> Interaction: Click to switch between A/M/E -> Justification: Allows direct comparison of grade requirements -> Library/Method: HTML/CSS/JS. Report Info: PPDAC Cycle -> Goal: Inform/Organize -> Viz: HTML/CSS Diagram with text and arrows -> Interaction: Static visual -> Justification: Provides clear visual context for the unit's place in the statistical process -> Library/Method: HTML/CSS. -->
+    <!-- Application Structure Plan: A tabbed, single-page application with sections for Overview, Key Concepts, Unit Plan, and Assessment. This structure breaks down the dense unit plan into user-selectable, manageable chunks, prioritizing usability over the original linear format. Key interactions include an accordion for concepts and tabs for assessment criteria to make information easily accessible. -->
+    <!-- Visualization & Content Choices: Report Info: Key Concepts -> Goal: Organize/Inform -> Viz: Interactive Accordion -> Interaction: Click to expand/collapse -> Justification: Manages large amount of text, prevents cognitive overload -> Library/Method: HTML/CSS/JS. Report Info: Assessment Criteria -> Goal: Compare -> Viz: Tabbed Interface -> Interaction: Click to switch between A/M/E -> Justification: Allows direct comparison of grade requirements -> Library/Method: HTML/CSS/JS. Report Info: PPDAC Cycle -> Goal: Inform/Organize -> Viz: HTML/CSS Diagram with text and arrows -> Interaction: Static visual -> Justification: Provides clear visual context for the unit's place in the statistical process -> Library/Method: HTML/CSS. New Content: The 4-week guide is integrated into the Unit Plan section using HTML, CSS, and Chart.js visualizations to present the content in a structured, digestible format. -->
     <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
     <style>
         body {
@@ -76,6 +77,37 @@
                 margin: 0.5rem 0;
             }
         }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px;
+            max-height: 40vh;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 350px;
+            }
+        }
+        .flowchart-step {
+            background-color: white;
+            border: 2px solid #0d9488;
+            color: #333333;
+            padding: 1rem;
+            border-radius: 0.5rem;
+            text-align: center;
+            font-weight: 600;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+            flex-grow: 1;
+        }
+        .flowchart-arrow {
+            font-size: 2.5rem;
+            color: #d94646; /* Adjusted to a fitting red tone */
+            line-height: 1;
+            align-self: center;
+        }
     </style>
 </head>
 <body class="text-slate-800">
@@ -89,6 +121,7 @@
         <nav class="flex justify-center border-b border-slate-200 mb-8">
             <button data-target="overview" class="nav-button active text-sm sm:text-base font-semibold py-3 px-3 sm:px-6">Overview</button>
             <button data-target="concepts" class="nav-button text-sm sm:text-base font-semibold py-3 px-3 sm:px-6">Key Concepts</button>
+            <button data-target="plan" class="nav-button text-sm sm:text-base font-semibold py-3 px-3 sm:px-6">Unit Plan</button>
             <button data-target="assessment" class="nav-button text-sm sm:text-base font-semibold py-3 px-3 sm:px-6">Assessment</button>
             <button data-target="resources" class="nav-button text-sm sm:text-base font-semibold py-3 px-3 sm:px-6">Resources</button>
         </nav>
@@ -165,6 +198,115 @@
                 </div>
             </section>
 
+            <!-- Unit Plan Section -->
+            <section id="plan" class="section animate-fade-in">
+                <div class="bg-white p-6 rounded-lg shadow-sm">
+                    <h2 class="text-2xl font-bold mb-4 text-teal-700">Suggested Unit Plan</h2>
+                    <p class="mb-6 text-slate-600">
+                        This 4-week guide breaks down the assessment into manageable stages, from foundational concepts to final submission. Each week builds upon the last, guiding students through the entire design process.
+                    </p>
+                    
+                    <div class="space-y-12">
+                        <section id="week1-plan" class="bg-white rounded-lg shadow-md p-6 md:p-8">
+                            <h3 class="text-2xl font-bold text-teal-700 mb-4">Week 1: Laying the Foundation</h3>
+                            <p class="mb-6 text-lg text-slate-700">The first week is all about understanding the 'why' behind your questionnaire. A strong foundation ensures your questions are focused, relevant, and ethical, setting you up for success from the very beginning.</p>
+                            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
+                                <div class="bg-blue-50 p-6 rounded-lg">
+                                    <div class="text-5xl mb-3">🎯</div>
+                                    <h4 class="text-xl font-bold mb-2">Define Your Purpose</h4>
+                                    <p class="text-slate-600">Establish a clear research question and identify the specific variables you need to investigate.</p>
+                                </div>
+                                <div class="bg-green-50 p-6 rounded-lg">
+                                    <div class="text-5xl mb-3">👥</div>
+                                    <h4 class="text-xl font-bold mb-2">Know Your Audience</h4>
+                                    <p class="text-slate-600">Define your target population. Who are you surveying, and why are their insights valuable?</p>
+                                </div>
+                                <div class="bg-yellow-50 p-6 rounded-lg">
+                                    <div class="text-5xl mb-3">🛡️</div>
+                                    <h4 class="text-xl font-bold mb-2">Uphold Ethics</h4>
+                                    <p class="text-slate-600">Plan for anonymity, confidentiality, and informed consent to protect your participants.</p>
+                                </div>
+                            </div>
+                        </section>
+
+                        <section id="week2-plan" class="bg-white rounded-lg shadow-md p-6 md:p-8">
+                            <h3 class="text-2xl font-bold text-teal-700 mb-4">Week 2: The Art of the Question</h3>
+                            <p class="mb-6 text-lg text-slate-700">Now it's time to craft the core of your project: the questions. This week focuses on choosing the right tools for the job and wording your questions carefully to gather accurate, unbiased data.</p>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                                <div>
+                                    <h4 class="text-xl font-bold mb-4 text-center text-slate-800">Choosing Your Question Type</h4>
+                                    <p class="mb-4 text-center text-slate-600">Different question types yield different kinds of data. A bar chart helps visualize when to use certain types. Closed questions are great for specific, comparable data, while open questions allow for deeper, qualitative insights.</p>
+                                    <div class="chart-container">
+                                        <canvas id="questionTypeChart"></canvas>
+                                    </div>
+                                </div>
+                                <div>
+                                    <h4 class="text-xl font-bold mb-4 text-slate-800">Wording Do's & Don'ts</h4>
+                                    <ul class="space-y-4 text-slate-700">
+                                        <li class="flex items-start"><span class="text-2xl mr-3 text-emerald-500">✔️</span><span><strong>Do:</strong> Keep it simple and clear. Use language your target audience will easily understand.</span></li>
+                                        <li class="flex items-start"><span class="text-2xl mr-3 text-emerald-500">✔️</span><span><strong>Do:</strong> Ask one thing at a time. Ensure each question focuses on a single idea.</span></li>
+                                        <li class="flex items-start"><span class="text-2xl mr-3 text-rose-500">❌</span><span><strong>Don't:</strong> Use jargon or acronyms. These can confuse respondents and lead to inaccurate answers.</span></li>
+                                        <li class="flex items-start"><span class="text-2xl mr-3 text-rose-500">❌</span><span><strong>Don't:</strong> Write leading or biased questions that suggest a "correct" answer.</span></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </section>
+
+                        <section id="week3-plan" class="bg-white rounded-lg shadow-md p-6 md:p-8">
+                            <h3 class="text-2xl font-bold text-teal-700 mb-4">Week 3: Test, Learn, Improve</h3>
+                            <p class="mb-8 text-lg text-slate-700">A questionnaire is never perfect on the first try. This week is dedicated to structuring your draft, testing it with a small group (piloting), and using the feedback to make crucial improvements. This iterative process is key to a polished final product.</p>
+                            <div class="flex flex-col md:flex-row items-stretch justify-between gap-4">
+                                <div class="flowchart-step">1. Full Draft Assembly</div>
+                                <div class="flowchart-arrow transform md:rotate-0 rotate-90">➡️</div>
+                                <div class="flowchart-step">2. Conduct Pilot Test</div>
+                                <div class="flowchart-arrow transform md:rotate-0 rotate-90">➡️</div>
+                                <div class="flowchart-step">3. Analyze Feedback</div>
+                                <div class="flowchart-arrow transform md:rotate-0 rotate-90">➡️</div>
+                                <div class="flowchart-step">4. Refine & Finalize</div>
+                            </div>
+                        </section>
+
+                        <section id="week4-plan" class="bg-white rounded-lg shadow-md p-6 md:p-8">
+                            <h3 class="text-2xl font-bold text-teal-700 mb-4">Week 4: Justify & Excel</h3>
+                            <p class="mb-6 text-lg text-slate-700">The final week is about elevating your work from a simple list of questions to a well-reasoned assessment piece. Justifying your design choices and showing statistical insight are what separate a basic pass from Merit and Excellence.</p>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                                <div>
+                                    <h4 class="text-xl font-bold mb-4 text-center text-slate-800">Building Towards Excellence</h4>
+                                    <p class="mb-4 text-center text-slate-600">This chart shows how each level of achievement builds upon the last. A solid questionnaire gets you 'Achieved'. Strong justification for your design choices earns 'Merit', and demonstrating deep statistical insight is the key to 'Excellence'.</p>
+                                    <div class="chart-container">
+                                        <canvas id="achievementLevelChart"></canvas>
+                                    </div>
+                                </div>
+                                <div class="p-6 bg-rose-50 rounded-lg">
+                                    <h4 class="text-xl font-bold mb-4">Key Elements for Your Report</h4>
+                                    <ul class="space-y-3 list-disc list-inside text-slate-700">
+                                        <li><strong>Purpose:</strong> Clearly state your research goal.</li>
+                                        <li><strong>Justification:</strong> Explain *why* you chose specific questions, wording, and structure.</li>
+                                        <li><strong>Piloting:</strong> Detail your pilot process and how feedback led to specific refinements.</li>
+                                        <li><strong>Statistical Insight:</strong> Discuss the types of data you'll collect (e.g., nominal, ordinal) and how it could be analyzed.</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </section>
+
+                        <section id="submission-plan" class="text-center bg-teal-700 text-white rounded-lg shadow-md p-8">
+                            <h3 class="text-2xl font-bold mb-4">Final Assessment Submission</h3>
+                            <p class="text-lg mb-6 max-w-3xl mx-auto">At the end of the four weeks, you will submit two key items that showcase your entire design process and final outcome.</p>
+                            <div class="flex flex-col md:flex-row justify-center items-center gap-8">
+                                <div class="bg-white text-slate-800 p-6 rounded-lg shadow-lg w-full md:w-1/3">
+                                    <div class="text-5xl mb-3">📋</div>
+                                    <h4 class="text-xl font-bold">1. The Final Questionnaire</h4>
+                                </div>
+                                <div class="bg-white text-slate-800 p-6 rounded-lg shadow-lg w-full md:w-1/3">
+                                    <div class="text-5xl mb-3">📄</div>
+                                    <h4 class="text-xl font-bold">2. The Comprehensive Report</h4>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+                </div>
+            </section>
+
             <!-- Assessment Section -->
             <section id="assessment" class="section animate-fade-in">
                 <div class="bg-white p-6 rounded-lg shadow-sm">
@@ -236,11 +378,11 @@
                         <div class="p-4 bg-slate-50 rounded-lg border border-slate-200">
                             <h4 class="font-semibold text-slate-700">Questionnaire Design Template</h4>
                             <p class="text-sm text-slate-600 mb-2">A foundational template to help you get started with your design.</p>
-                            <a href="https://docs.google.com/document/d/1r-Nze_pLh2Wq4prcrQSj9gN08O1rPvEksCFYnvNeOWY/edit?usp=sharing" target="_blank" class="inline-block px-4 py-2 bg-teal-600 text-white font-medium rounded-lg shadow-md hover:bg-teal-700 transition">Download Template</a>
+                            <a href="https://davan690.github.io/AS91263_questionnaire/" target="_blank" class="inline-block px-4 py-2 bg-teal-600 text-white font-medium rounded-lg shadow-md hover:bg-teal-700 transition">Download Template</a>
                         </div>
                         <!-- Copy and paste the div above to add more resources -->
                         <!-- Example of a new resource: -->
-                        <!--s
+                        <!--
                         <div class="p-4 bg-slate-50 rounded-lg border border-slate-200">
                             <h4 class="font-semibold text-slate-700">Example Questionnaire (Google Form)</h4>
                             <p class="text-sm text-slate-600 mb-2">A fully functional example demonstrating various question types and flow.</p>
@@ -441,6 +583,153 @@
                         }, 400); 
                     }
                 });
+            });
+            
+            // Charts from the new resource
+            const wrapLabel = (str, maxWidth) => {
+                if (str.length <= maxWidth) {
+                    return str;
+                }
+                const words = str.split(' ');
+                let lines = [];
+                let currentLine = '';
+                for (const word of words) {
+                    if ((currentLine + word).length > maxWidth) {
+                        lines.push(currentLine.trim());
+                        currentLine = '';
+                    }
+                    currentLine += word + ' ';
+                }
+                lines.push(currentLine.trim());
+                return lines;
+            };
+
+            const tooltipTitleCallback = (tooltipItems) => {
+                const item = tooltipItems[0];
+                let label = item.chart.data.labels[item.dataIndex];
+                if (Array.isArray(label)) {
+                    return label.join(' ');
+                } else {
+                    return label;
+                }
+            };
+            
+            const sharedChartOptions = {
+                maintainAspectRatio: false,
+                responsive: true,
+                plugins: {
+                    legend: {
+                        position: 'bottom',
+                        labels: {
+                            font: {
+                                size: 14,
+                                family: 'Inter'
+                            }
+                        }
+                    },
+                    tooltip: {
+                        callbacks: {
+                            title: tooltipTitleCallback
+                        },
+                        bodyFont: {
+                            size: 14,
+                            family: 'Inter'
+                        },
+                        titleFont: {
+                            size: 16,
+                            family: 'Inter'
+                        }
+                    }
+                },
+                scales: {
+                    x: {
+                        ticks: {
+                            font: { size: 12, family: 'Inter' }
+                        }
+                    },
+                    y: {
+                        ticks: {
+                            font: { size: 12, family: 'Inter' }
+                        }
+                    }
+                }
+            };
+
+            const questionTypeCtx = document.getElementById('questionTypeChart').getContext('2d');
+            new Chart(questionTypeCtx, {
+                type: 'bar',
+                data: {
+                    labels: [
+                        wrapLabel('Multiple Choice Questions', 16), 
+                        wrapLabel('Likert Scale Questions', 16), 
+                        wrapLabel('Ranking Questions', 16), 
+                        wrapLabel('Open-Ended Questions', 16)
+                    ],
+                    datasets: [{
+                        label: 'Suitability for Quantitative Data',
+                        data: [90, 95, 80, 20],
+                        backgroundColor: '#0d9488', // Adjusted to teal
+                        borderColor: '#0f766e',
+                        borderWidth: 1
+                    }, {
+                        label: 'Suitability for Qualitative Insight',
+                        data: [25, 15, 10, 90],
+                        backgroundColor: '#a3e635', // Adjusted to lime green
+                        borderColor: '#65a30d',
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    ...sharedChartOptions,
+                    scales: {
+                        x: { ...sharedChartOptions.scales.x, stacked: false },
+                        y: { ...sharedChartOptions.scales.y, stacked: false, beginAtZero: true, max: 100, title: { display: true, text: 'Suitability Score' } }
+                    }
+                }
+            });
+
+            const achievementLevelCtx = document.getElementById('achievementLevelChart').getContext('2d');
+            new Chart(achievementLevelCtx, {
+                type: 'bar',
+                data: {
+                    labels: ['Achieved', 'Merit', 'Excellence'],
+                    datasets: [{
+                        label: 'Core Design & Piloting',
+                        data: [60, 60, 60],
+                        backgroundColor: '#0d9488', // Adjusted to teal
+                    }, {
+                        label: 'Detailed Justification',
+                        data: [0, 25, 25],
+                        backgroundColor: '#fde047', // Adjusted to yellow
+                    }, {
+                        label: 'Statistical Insight',
+                        data: [0, 0, 15],
+                        backgroundColor: '#d94646', // Adjusted to red
+                    }]
+                },
+                options: {
+                    ...sharedChartOptions,
+                    scales: {
+                        x: { ...sharedChartOptions.scales.x, stacked: true },
+                        y: { ...sharedChartOptions.scales.y, stacked: true, beginAtZero: true, max: 100, title: { display: true, text: 'Component Weighting (%)' } }
+                    },
+                    plugins: {
+                        ...sharedChartOptions.plugins,
+                        tooltip: {
+                            ...sharedChartOptions.plugins.tooltip,
+                            callbacks: {
+                                ...sharedChartOptions.plugins.tooltip.callbacks,
+                                footer: (tooltipItems) => {
+                                    let total = 0;
+                                    for (let i = 0; i < tooltipItems.length; i++) {
+                                        total += tooltipItems[i].parsed.y;
+                                    }
+                                    return 'Total: ' + total + '%';
+                                }
+                            }
+                        }
+                    }
+                }
             });
         });
     </script>
