@@ -7,17 +7,7 @@ output: github_document
 
 # AS91263 Questionnaire
 
-This document provides a questionnaire based on the AS91263 standard, which is used for quality management in the aerospace industry. The questions are designed to assess compliance with the standard's requirements.
-
-## Section 1: Quality Management System
-
-1. **Does your organization have a documented quality management system (QMS)?**
-   - Yes
-   - No
-
-2. **Is the QMS regularly reviewed and updated?**
-    - Yes
-    - No
+This document provides a questionnaire based on the AS91263 achievement standard for NCEA level 2.
 
 There is an application in this page that lays out the assessment and then I am now including the questions in the R Markdown format.
 
